@@ -3,7 +3,7 @@ document.getElementById('bookForm').addEventListener('submit', function(e) {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
 
-    fetch('http://3.94.197.119:5000/books', {
+    fetch('http://3.90.226.29:5000/books', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ document.getElementById('delbookForm').addEventListener('submit', function(e) {
     const bookId = selectedBook.options[selectedBook.selectedIndex].textContent;
 
     if (bookId && confirm("Are you sure you want to delete this book?")) {
-        fetch(`http://3.94.197.119:5000/books/${bookId}`, {
+        fetch(`http://3.90.226.29:5000/books/${bookId}`, {
             method: 'DELETE'
         })
         .then(response => {
@@ -50,7 +50,7 @@ document.getElementById('delbookForm').addEventListener('submit', function(e) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('http://3.94.197.119:5000/books')
+    fetch('http://3.90.226.29:5000/books')
         .then(response => response.json())
         .then(books => {
             const bookSelect = document.getElementById('bookSelect');
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function loadBooks() {
-    fetch('http://3.94.197.119:5000/books')
+    fetch('http://3.90.226.29:5000/books')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
