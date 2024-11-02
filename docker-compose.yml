@@ -8,6 +8,11 @@ services:
       - "3000:80"
     depends_on:
       - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   backend:
     build:
@@ -19,6 +24,11 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/books"] # Adjust the health endpoint as needed
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   postgres:
     build:
